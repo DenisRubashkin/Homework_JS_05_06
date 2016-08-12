@@ -1,0 +1,45 @@
+body {
+  background-color: #000;
+}
+
+.wrapper {
+  width: 50%;
+  margin: 20px auto;
+}
+
+.stopwatch {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: 80px;
+  color: #f00;
+  font-weight: bold;
+}
+
+.stopwatch__hh,
+.stopwatch__mm,
+.stopwatch__ss,
+.stopwatch__ms {
+  font-family: Arial, sans-serif;
+  font-size: 80px;
+  font-weight: bold;
+  color: #f00;
+  padding: 0 5px;
+}
+
+span.stopwatch__ms {
+  font-size: 40px;
+  padding: 0;  
+}
+
+.stopwatch__button {
+  font-family: Arial, sans-serif;
+  font-size: 30px;  
+  width: 150px;
+  margin: 0 5px;
+}
+
+div.stopwatch__timestamp {
+  font-size: 24px;  
+  color: grey;
+  margin-top: 10px;
+}
