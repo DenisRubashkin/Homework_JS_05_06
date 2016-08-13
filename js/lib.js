@@ -29,6 +29,7 @@ function Stopwatch(parent) {
   var _isWorking = false;
 
   var _milisecondsTimer, _secondsTimer, _minutesTimer, _hoursTimer;
+  var _secondsTimeout, _minutesTimeout, _hoursTimeout;
 
   var self = this;
 
@@ -231,25 +232,39 @@ function Stopwatch(parent) {
   }
 
   function _startTimers() {
-    _hoursTimer = setInterval(
-      function() {
-        self.setHours(++_hours);
-      }, 
-      3600000);
-    
-    _minutesTimer = setInterval(
-      function() {
-        self.setMinutes(++_minutes);
-      }, 
-      60000);
-    
-    _secondsTimer = setInterval(
-      function() {
-        _stamp = +new Date;
-        _miliseconds = 0;
-        self.setSeconds(++_seconds);
+    var ms = self.getMiliseconds();
+        
+    _hoursTimeout = setTimeout(function() {    
+      self.setHours(++_hours);
+      _hoursTimer = setInterval(
+        function() {
+          self.setHours(++_hours);
+        }, 
+        3600000);
       },
-      1000);
+      3600000 - 60000*_minutes - 1000*_seconds - ms);
+    
+    _minutesTimeout = setTimeout(function() {    
+      self.setMinutes(++_minutes);
+      _minutesTimer = setInterval(
+        function() {
+          self.setMinutes(++_minutes);
+        }, 
+        60000);
+      },
+      60000 - 1000*_seconds - ms);
+    
+    _secondsTimeout = setTimeout(function() {
+      self.setSeconds(++_seconds);
+      _secondsTimer = setInterval(
+        function() {
+          _stamp = +new Date;
+          _miliseconds = 0;
+          self.setSeconds(++_seconds);
+        },
+        1000);
+      },
+      1000 - ms);
 
     _milisecondsTimer = setInterval(
       function() {
@@ -259,6 +274,9 @@ function Stopwatch(parent) {
   }
 
   function _stopTimers() {
+    clearTimeout(_hoursTimeout);
+    clearTimeout(_minutesTimeout);
+    clearTimeout(_secondsTimeout);
     clearInterval(_milisecondsTimer);
     clearInterval(_secondsTimer);
     clearInterval(_minutesTimer);
