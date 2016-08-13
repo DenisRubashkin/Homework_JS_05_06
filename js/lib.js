@@ -270,7 +270,7 @@ function Stopwatch(parent) {
       function() {
         _refresh();      
       },
-      1);
+      4);
   }
 
   function _stopTimers() {

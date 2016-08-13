@@ -24,11 +24,14 @@ body {
   font-weight: bold;
   color: #f00;
   padding: 0 5px;
+  display: inline-block;
+  width: 85px;
 }
 
 span.stopwatch__ms {
   font-size: 40px;
   padding: 0;  
+  width: 75px;
 }
 
 .stopwatch__button {
