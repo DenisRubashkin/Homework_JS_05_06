@@ -139,7 +139,6 @@ function Stopwatch(parent) {
     element.innerHTML = 'Старт';
     element.removeEventListener('click', self.stop);
     element.addEventListener('click', self.start);
-    _isWorking = false;
   }
 
   self.split = function() {
