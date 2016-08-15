@@ -155,9 +155,14 @@ function Stopwatch(parent) {
     var parentElement = document.querySelector('.stopwatch');
     var timestamps = document.querySelectorAll('.stopwatch__timestamp');
 
+    for (var i = 0; i < timestamps.length; i++){
+      parentElement.removeChild(timestamps[i]);
+    }
+  /*
     timestamps.forEach(function(item, i, arr) {
       parentElement.removeChild(item);
     })
+  */
     _refresh();
   }
 
