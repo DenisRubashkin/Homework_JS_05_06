@@ -87,7 +87,6 @@ function Stopwatch(parent) {
     } else {
     _minutes = minutes;
     }
-    _minutes = minutes;
   }
 
   self.setHours = function(hours) {
@@ -148,7 +147,10 @@ function Stopwatch(parent) {
   }
 
   self.reset = function() {
-    self.stop();
+    if (_isWorking) {
+      self.stop();
+    }
+    
     _hours = _minutes = _seconds = _miliseconds = _timestampCount = 0;
    
     var parentElement = document.querySelector('.stopwatch');
